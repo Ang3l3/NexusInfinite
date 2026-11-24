@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nexus Infinite</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800&family=Rajdhani:wght@400;500;700&family=Oxanium:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: #030509;
+    background-image:
+        linear-gradient(
+            rgba(3, 5, 9, 0.45),
+            rgba(3, 5, 9, 0.85)
+        ),
+        url("background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    font-family: 'Sora', sans-serif;
+    color: white;
+
+    overflow-x: hidden;
+    position: relative;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: radial-gradient(
+        circle,
+        rgba(91, 105, 255, 0.13),
+        transparent 70%
+    );
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+.hero {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.logo-container img {
+    width: 230px;
+    max-width: 65vw;
+    height: auto;
+
+    filter:
+        drop-shadow(0 0 12px rgba(120, 150, 255, 0.25))
+        drop-shadow(0 0 30px rgba(100, 100, 255, 0.12));
+
+    transition: 0.4s ease;
+}
+
+.logo-container img:hover {
+    transform: scale(1.10);
+
+    filter:
+        drop-shadow(0 0 18px rgba(160, 180, 255, 0.5))
+        drop-shadow(0 0 35px rgba(100, 100, 255, 0.3));
+}
+
+
+/* =====================================
+   ANIMATED LOGO INTERACTION
+===================================== */
+
+.logo-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    position: relative;
+    padding: 15px 25px;
+
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+/* Pulsating outline around logo */
+
+.logo-link::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border: 1px solid rgba(130,150,255,0.35);
+    border-radius: 12px;
+
+    pointer-events: none;
+
+    animation: logoPulse 3s ease-out infinite;
+}
+
+/* Animated service indicator */
+
+.logo-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 11px 18px;
+
+    color: #b9c9ff;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+
+    background: rgba(90,110,180,0.12);
+
+    border: 1px solid rgba(140,160,255,0.35);
+    border-radius: 4px;
+
+    animation: hintGlow 2.5s ease-in-out infinite;
+
+    transition: 0.3s ease;
+}
+
+/* Animated arrow */
+
+.hint-arrow {
+    display: inline-block;
+    color: #b9c9ff;
+    font-size: 14px;
+
+    animation: arrowFloat 1.2s ease-in-out infinite;
+}
+
+/* Logo outline animation */
+
+@keyframes logoPulse {
+
+    0% {
+        transform: scale(0.96);
+        opacity: 0;
+    }
+
+    35% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1.12);
+        opacity: 0;
+    }
+
+}
+
+/* Indicator glow */
+
+@keyframes hintGlow {
+
+    0%, 100% {
+        opacity: 0.65;
+        box-shadow: 0 0 5px rgba(120,140,255,0.05);
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 18px rgba(120,140,255,0.2);
+    }
+
+}
+
+/* Arrow movement */
+
+@keyframes arrowFloat {
+
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(4px, -4px);
+    }
+
+}
+
+/* Hover interaction */
+
+.logo-link:hover .logo-hint {
+    color: white;
+
+    background: rgba(120,140,255,0.22);
+
+    border-color: #aabaff;
+
+    box-shadow: 0 0 25px rgba(120,140,255,0.3);
+}
+
+.logo-link:hover .hint-arrow {
+    color: white;
+}
+
+.logo-link:hover::before {
+    animation-play-state: paused;
+    opacity: 1;
+    border-color: #aabaff;
+}
+
+/* Keyboard accessibility */
+
+.logo-link:focus-visible {
+    outline: 2px solid #aabaff;
+    outline-offset: 6px;
+}
+
+/* Accessibility: reduce motion */
+
+@media (prefers-reduced-motion: reduce) {
+    .logo-link::before,
+    .logo-hint,
+    .hint-arrow {
+        animation: none;
+    }
+}
+
+  
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(35px, 6vw, 76px);
+    font-weight: 800;
+
+    letter-spacing: 5px;
+    line-height: 1.2;
+
+    background: linear-gradient(
+        110deg,
+        #647b98 0%,
+        #ffffff 20%,
+        #b9d8ff 35%,
+        #ffffff 50%,
+        #819bb9 65%,
+        #ffffff 80%,
+        #647b98 100%
+    );
+
+    background-size: 250% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    filter: drop-shadow(0 5px 3px rgba(0,0,0,0.7));
+
+    animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+    from {
+        background-position: 200% center;
+    }
+
+    to {
+        background-position: -200% center;
+    }
+}
+
+
+.slogan {
+    margin-top: 15px;
+
+    font-family: 'Oxanium', sans-serif;
+    font-size: clamp(20px, 3vw, 30px);
+
+    font-weight: 500;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+.forge {
+    color: #B026FF;
+
+    text-shadow:
+        0 0 10px rgba(176, 38, 255, 0.6);
+}
+
+.focus {
+    color: #62D9FF;
+
+    text-shadow:
+        0 0 10px rgba(98, 217, 255, 0.6);
+}
+
+
+.divider {
+    width: 100px;
+    height: 2px;
+
+    margin: 25px auto;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #879cff,
+        #B026FF,
+        transparent
+    );
+
+    box-shadow: 0 0 12px rgba(130, 150, 255, 0.6);
+}
+
+
+.description {
+    max-width: 650px;
+    padding: 0 15px;
+
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+
+    color: #aab5c8;
+    letter-spacing: 0.5px;
+}
+
+.description b {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+.label {
+    margin-bottom: 25px;
+
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+
+    letter-spacing: 4px;
+    color: #8998b5;
+
+    text-transform: uppercase;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+
+    margin-top: 35px;
+}
+
+.btn {
+    padding: 14px 30px;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+
+    text-decoration: none;
+    color: white;
+
+    border: 1px solid rgba(155, 175, 255, 0.5);
+    border-radius: 5px;
+
+    background: rgba(30, 40, 65, 0.35);
+
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background: rgba(120, 100, 255, 0.2);
+
+    border-color: #B026FF;
+
+    box-shadow:
+        0 0 15px rgba(176, 38, 255, 0.3);
+
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: linear-gradient(
+        110deg,
+        #394c85,
+        #7141a8
+    );
+
+    border: 1px solid #9d91ff;
+}
+
+
+
+</style>
+  
+</head>
+
+<body>
+
+<section class="hero">
+
+    <div class="label">
+        Gaming • Technology • Productivity
+    </div>
+
+    <div class="logo-container">
+
+    <a href="services.html" class="logo-link"
+       aria-label="Explore Nexus Infinite services">
+
+        <!-- YOUR ORIGINAL LOGO -->
+        <img src="logo.png" alt="Nexus Infinite Logo">
+
+        <!-- ANIMATED CLICK INDICATOR -->
+        <span class="logo-hint">
+            EXPLORE OUR SERVICES
+            <span class="hint-arrow">↗</span>
+        </span>
+
+    </a>
+
+</div>
+
+    <h1>NEXUS INFINITE</h1>
+
+    <h2 class="slogan">
+        <span class="forge">Forge</span>
+        &
+        <span class="focus">Focus</span>
+    </h2>
+
+    <div class="divider"></div>
+
+    <p class="description">
+        Where <b>gaming</b> meets <b>productivity</b>.
+        A modern internet café designed to bring together
+        the best of gaming, technology, and focused work
+        in one innovative space.
+    </p>
+
+    <div class="buttons">
+        <a href="rental-form.html" class="btn btn-primary">
+            BOOK NOW
+        </a>
+
+        <a href="about.html" class="btn">
+            ABOUT US
+        </a>
+    </div>
+
+</section>
+
+</body>
+  
+</html>

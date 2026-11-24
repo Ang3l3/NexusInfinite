@@ -1,0 +1,901 @@
+
+/* =====================================
+   GENERAL SETTINGS
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #020812;
+
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: grid;
+    place-items: center;
+
+    overflow-x: hidden;
+
+    color: white;
+
+    font-family: 'Rajdhani', sans-serif;
+}
+
+
+/* =====================================
+   HERO SECTION
+===================================== */
+
+.hero {
+    position: relative;
+
+    width: min(100%, 1920px);
+
+    aspect-ratio: 16 / 9;
+    min-height: 620px;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    background:
+        url("servicebg.jpg") center / cover no-repeat;
+
+    background-color: #020812;
+}
+
+
+/* BACKGROUND OVERLAY */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 25%,
+            rgba(0, 120, 200, 0.12),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            to bottom,
+            rgba(1, 7, 18, 0.15),
+            transparent 40%,
+            rgba(1, 5, 15, 0.48)
+        );
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+
+/* =====================================
+   BRAND
+===================================== */
+
+.brand {
+    position: absolute;
+
+    top: 4%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+
+    width: clamp(170px, 18%, 280px);
+
+    z-index: 5;
+
+    text-decoration: none;
+}
+
+.brand img {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    filter:
+        drop-shadow(0 0 8px rgba(180, 60, 255, 0.45))
+        drop-shadow(0 0 15px rgba(0, 200, 255, 0.35));
+
+    transition: 0.4s ease;
+}
+
+.brand:hover img {
+    filter:
+        drop-shadow(0 0 12px rgba(180, 60, 255, 0.8))
+        drop-shadow(0 0 22px rgba(0, 200, 255, 0.65));
+
+    transform: scale(1.04);
+}
+
+.brand-name {
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: clamp(9px, 0.8vw, 14px);
+    font-weight: 700;
+
+    letter-spacing: 0.35em;
+
+    color: #d9eaff;
+
+    text-shadow:
+        0 0 8px rgba(0, 200, 255, 0.7);
+}
+
+
+/* =====================================
+   HERO TEXT
+===================================== */
+
+.hero-copy {
+    position: absolute;
+
+    top: 23%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 90%;
+
+    text-align: center;
+
+    z-index: 4;
+}
+
+
+/* EYEBROW */
+
+.eyebrow {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-bottom: 15px;
+
+    font-size: clamp(11px, 1vw, 16px);
+    font-weight: 700;
+
+    letter-spacing: 0.32em;
+
+    color: #66dcff;
+
+    text-shadow:
+        0 0 12px rgba(0, 180, 255, 0.6);
+}
+
+.eyebrow::before,
+.eyebrow::after {
+    content: "";
+
+    width: clamp(20px, 4vw, 65px);
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #00cfff
+    );
+}
+
+.eyebrow::after {
+    transform: rotate(180deg);
+}
+
+
+/* SMALL TITLE */
+
+.title-small {
+    display: block;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: clamp(23px, 2.4vw, 43px);
+    font-weight: 500;
+
+    letter-spacing: 0.12em;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 12px rgba(255,255,255,0.25);
+}
+
+
+/* MAIN TITLE */
+
+.title-main {
+    display: block;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: clamp(42px, 5.3vw, 92px);
+    font-weight: 800;
+
+    letter-spacing: 0.10em;
+
+    line-height: 1.15;
+
+    background: linear-gradient(
+        100deg,
+        #c36aff,
+        #ffffff 45%,
+        #58dcff
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    filter:
+        drop-shadow(0 0 12px rgba(0, 190, 255, 0.35));
+}
+
+
+/* SUBTITLE */
+
+.subtitle {
+    margin-top: 13px;
+
+    color: rgba(220, 235, 255, 0.8);
+
+    font-size: clamp(13px, 1.2vw, 20px);
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* =====================================
+   FLOOR LIGHTING
+===================================== */
+
+.floor-line {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 17%;
+
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(190, 50, 255, 0.85),
+        rgba(255,255,255,0.9),
+        rgba(0, 200, 255, 0.85),
+        transparent
+    );
+
+    box-shadow:
+        0 0 8px rgba(0, 200, 255, 0.6),
+        0 0 18px rgba(160, 70, 255, 0.35);
+
+    z-index: 1;
+}
+
+
+/* GENERAL GLOW */
+
+.floor-glow {
+    position: absolute;
+
+    bottom: 5%;
+
+    height: 15%;
+
+    border-radius: 50%;
+
+    filter: blur(30px);
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* PURPLE */
+
+.console-glow {
+    left: 0;
+    width: 35%;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(190, 50, 255, 0.45),
+        transparent 72%
+    );
+}
+
+
+/* PURPLE + CYAN */
+
+.mobile-glow {
+    left: 33%;
+    width: 34%;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(140, 90, 255, 0.38),
+        rgba(0, 190, 255, 0.2),
+        transparent 75%
+    );
+}
+
+
+/* CYAN */
+
+.laptop-glow {
+    right: 0;
+    width: 35%;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(0, 190, 255, 0.45),
+        transparent 72%
+    );
+}
+
+
+/* =====================================
+   THREE-PRODUCT LAYOUT
+===================================== */
+
+.product-stage {
+    position: absolute;
+
+    left: 4%;
+    right: 4%;
+
+    bottom: 4%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    align-items: end;
+
+    gap: clamp(10px, 2vw, 30px);
+
+    z-index: 3;
+}
+
+
+/* INDIVIDUAL PRODUCT */
+
+.product-link {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+
+    text-decoration: none;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* PRODUCT IMAGE */
+
+.product-link img {
+    display: block;
+
+    width: 100%;
+
+    height: clamp(150px, 17vw, 260px);
+
+    object-fit: contain;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
+
+    animation: floating 5s ease-in-out infinite;
+}
+
+
+/* FORGE IMAGE */
+
+.console-link img {
+    filter:
+        drop-shadow(0 20px 18px rgba(0,0,0,0.65))
+        drop-shadow(0 0 15px rgba(180,50,255,0.4));
+}
+
+
+/* ARENA IMAGE */
+
+.mobile-link img {
+    animation-delay: -1.7s;
+
+    filter:
+        drop-shadow(0 20px 18px rgba(0,0,0,0.65))
+        drop-shadow(0 0 18px rgba(150,70,255,0.35))
+        drop-shadow(0 0 12px rgba(0,190,255,0.3));
+}
+
+
+/* FOCUS IMAGE */
+
+.laptop-link img {
+    animation-delay: -3.3s;
+
+    filter:
+        drop-shadow(0 20px 18px rgba(0,0,0,0.65))
+        drop-shadow(0 0 18px rgba(0,190,255,0.4));
+}
+
+
+/* =====================================
+   PRODUCT INFORMATION CARDS
+===================================== */
+
+.product-info {
+    margin-top: 0;
+
+    width: min(100%, 340px);
+    min-width: 0;
+
+    padding: 10px 12px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 3px;
+
+    background: rgba(3, 12, 28, 0.72);
+
+    border: 1px solid rgba(150, 190, 255, 0.15);
+
+    border-radius: 8px;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition: 0.4s ease;
+}
+
+
+/* CATEGORY */
+
+.product-category {
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: clamp(8px, 0.65vw, 10px);
+    font-weight: 600;
+
+    letter-spacing: 0.13em;
+}
+
+
+/* PRODUCT NAME */
+
+.product-name {
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: clamp(14px, 1.3vw, 23px);
+    font-weight: 700;
+
+    letter-spacing: 0.07em;
+
+    color: #ffffff;
+}
+
+
+/* DESCRIPTION */
+
+.product-description {
+    font-size: clamp(8px, 0.8vw, 12px);
+
+    letter-spacing: 0.06em;
+
+    color: rgba(220, 230, 255, 0.65);
+
+    text-align: center;
+}
+
+
+/* CATEGORY COLORS */
+
+.console-link .product-category {
+    color: #d78aff;
+}
+
+.mobile-link .product-category {
+    color: #bd9aff;
+}
+
+.laptop-link .product-category {
+    color: #64ddff;
+}
+
+
+/* CARD GLOW */
+
+.console-link .product-info {
+    box-shadow:
+        0 0 18px rgba(170, 50, 255, 0.08);
+}
+
+.mobile-link .product-info {
+    box-shadow:
+        0 0 18px rgba(170, 50, 255, 0.08),
+        0 0 18px rgba(0, 180, 255, 0.06);
+}
+
+.laptop-link .product-info {
+    box-shadow:
+        0 0 18px rgba(0, 180, 255, 0.08);
+}
+
+
+/* =====================================
+   HOVER EFFECTS
+===================================== */
+
+.console-link:hover img,
+.mobile-link:hover img,
+.laptop-link:hover img {
+    animation-play-state: paused;
+
+    transform: translateY(-10px) scale(1.045);
+}
+
+
+/* FORGE HOVER */
+
+.console-link:hover img {
+    filter:
+        drop-shadow(0 25px 20px rgba(0,0,0,0.7))
+        drop-shadow(0 0 27px rgba(190,50,255,0.75));
+}
+
+.console-link:hover .product-info {
+    border-color: rgba(200, 100, 255, 0.7);
+
+    background: rgba(45, 14, 75, 0.8);
+}
+
+
+/* ARENA HOVER */
+
+.mobile-link:hover img {
+    filter:
+        drop-shadow(0 25px 20px rgba(0,0,0,0.7))
+        drop-shadow(0 0 27px rgba(180,70,255,0.7))
+        drop-shadow(0 0 22px rgba(0,190,255,0.55));
+}
+
+.mobile-link:hover .product-info {
+    border-color: rgba(180, 130, 255, 0.7);
+
+    background: rgba(35, 20, 70, 0.85);
+}
+
+
+/* FOCUS HOVER */
+
+.laptop-link:hover img {
+    filter:
+        drop-shadow(0 25px 20px rgba(0,0,0,0.7))
+        drop-shadow(0 0 27px rgba(0,190,255,0.75));
+}
+
+.laptop-link:hover .product-info {
+    border-color: rgba(0, 205, 255, 0.7);
+
+    background: rgba(5, 35, 60, 0.85);
+}
+
+
+/* KEYBOARD ACCESSIBILITY */
+
+.product-link:focus-visible {
+    outline: 2px solid #66dcff;
+    outline-offset: 5px;
+    border-radius: 8px;
+}
+
+
+/* =====================================
+   FLOATING ANIMATION
+===================================== */
+
+@keyframes floating {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+}
+
+
+/* =====================================
+   BOTTOM TEXT
+===================================== */
+
+.bottom-note {
+    position: absolute;
+
+    bottom: 1.5%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    text-align: center;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 0.25em;
+
+    color: rgba(210, 225, 255, 0.55);
+
+    z-index: 4;
+}
+
+
+/* =====================================
+   TABLET RESPONSIVENESS
+===================================== */
+
+@media (max-width: 1100px) and (min-width: 701px) {
+
+    .hero {
+        aspect-ratio: auto;
+        min-height: 680px;
+    }
+
+    .product-stage {
+        left: 3%;
+        right: 3%;
+        bottom: 5%;
+
+        gap: 12px;
+    }
+
+    .product-link img {
+        height: clamp(145px, 18vw, 200px);
+    }
+
+    .product-info {
+        padding: 9px 6px;
+    }
+
+    .product-description {
+        font-size: 9px;
+    }
+
+}
+
+
+/* =====================================
+   MOBILE RESPONSIVENESS
+===================================== */
+
+@media (max-width: 700px) {
+
+    body {
+        display: block;
+
+        min-height: 100svh;
+    }
+
+
+    .hero {
+        width: 100%;
+
+        height: 100svh;
+        min-height: 680px;
+
+        aspect-ratio: auto;
+
+        background-image:
+            url("servicebg.jpg");
+
+        background-size: cover;
+
+        background-position: center 58%;
+
+        background-repeat: no-repeat;
+
+        background-color: #020812;
+    }
+
+
+    /* BRAND */
+
+    .brand {
+        top: 4%;
+
+        width: clamp(140px, 43vw, 190px);
+    }
+
+    .brand-name {
+        font-size: 9px;
+    }
+
+
+    /* HERO TEXT */
+
+    .hero-copy {
+        top: 23%;
+
+        width: 94%;
+    }
+
+    .eyebrow {
+        font-size: 10px;
+
+        letter-spacing: 0.17em;
+
+        margin-bottom: 12px;
+    }
+
+    .title-small {
+        font-size: clamp(20px, 6vw, 29px);
+    }
+
+    .title-main {
+        font-size: clamp(42px, 11vw, 59px);
+
+        letter-spacing: 0.06em;
+    }
+
+    .subtitle {
+        font-size: 12px;
+
+        line-height: 1.5;
+
+        letter-spacing: 0.03em;
+
+        padding: 0 10px;
+    }
+
+
+    /* FLOOR LIGHTING */
+
+    .floor-line {
+        bottom: 31%;
+    }
+
+    .floor-glow {
+        bottom: 15%;
+
+        height: 12%;
+
+        filter: blur(24px);
+    }
+
+
+    /* THREE PRODUCT COLUMNS */
+
+    .product-stage {
+        left: 2%;
+        right: 2%;
+
+        bottom: 9%;
+
+        gap: 6px;
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+
+    .product-link img {
+        height: clamp(100px, 27vw, 145px);
+    }
+
+
+    /* MOBILE PRODUCT CARDS */
+
+    .product-info {
+        width: 100%;
+
+        padding: 7px 3px;
+
+        gap: 3px;
+    }
+
+
+    .product-category {
+        font-size: clamp(6px, 1.65vw, 8px);
+
+        letter-spacing: 0.04em;
+    }
+
+
+    .product-name {
+        font-size: clamp(10px, 3vw, 15px);
+
+        letter-spacing: 0.02em;
+    }
+
+
+    .product-description {
+        display: none;
+    }
+
+
+    /* BOTTOM TEXT */
+
+    .bottom-note {
+        bottom: 2%;
+
+        font-size: 8px;
+
+        letter-spacing: 0.14em;
+    }
+
+}
+
+
+/* =====================================
+   EXTRA SMALL PHONES
+===================================== */
+
+@media (max-width: 360px) {
+
+    .product-stage {
+        left: 1%;
+        right: 1%;
+
+        gap: 4px;
+    }
+
+    .product-info {
+        padding: 6px 2px;
+    }
+
+}
+
+
+/* =====================================
+   REDUCED MOTION
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+    }
+
+}
